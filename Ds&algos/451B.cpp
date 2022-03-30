@@ -22,45 +22,47 @@ using namespace std;
 
 
 int main(){
-	int n;
-	cin >> n;
-	int arr[n];
-	forn(i,n){
-		cin >> arr[i];
-	}
-	int left = 0;
-	int right = n-1;
-	int i;
-	for(i=0;i<n-1;i++){
-		if(arr[i] > arr[i+1]){
-			left = i;
-			break;
-		}
-	}
-	for(i=left+1;i<n-1;i++){
-		if(arr[i] < arr[i+1]){
-			right = i;
-		}
-	}
-	if(i == n-1){
-		right = n;
-	}
-	
-	reverse(arr+left,arr+right);
-	int flag =1;
-	for(i=0;i<n-1;i++){
-		if(arr[i] > arr[i+1]){
-			flag = 0;
-		}
-	 }
+	 int n;
+    cin >> n;
+    int arr[n];
+    forn(i,n){
+        cin >> arr[i];
+    }
+    int left = 0;
+    int right = 0;
+    for(int i=0;i<n-1;i++){
+        if(arr[i] > arr[i+1]){
+            left = i;
+            break;
+        }
+    }
+    for(int i=left;i<n-1;i++){
+        if(arr[i] < arr[i+1]){
 
-	 if(flag == 0){
-	 	cout << "no" << nl; 
-	 }
-	 else{
-	 	cout << "yes" << nl;
-	 	cout << left+1 << " " << right+1;
-	 }
+            right = i;
+            break;
+        }
+    }
+    if(right == 0 && arr[n-2] > arr[n-1]){
+        right= n-1;
+    }
+    reverse(arr+left,arr+right+1);
+    cout << nl;
+    int flag =1;
+    for(int i=0;i<n-1;i++){
+        if(arr[i] > arr[i+1]){
+            flag = 0;
+            break;
+        }
+     }
+
+     if(flag == 0){
+         cout << "no" << nl;
+     }
+     else{
+         cout << "yes" << nl;
+         cout << left+1 << " " << right+1;
+     }
 
 	}
 
